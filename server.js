@@ -1,13 +1,20 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
-
+const productRoutes = require("./routes/productRoutes");
 // Dotenv configuaration
 dotenv.config();
 
 // app created
 const app = express();
 app.use(express.json());
+
+// Home Route -> Je keu access parte parbe jar jonno amra get bebohar kore tahki.
+app.get("/", (req, res) => {
+  res.send("Welcome to the Book Bay Server By Eshikhon.com");
+});
+
+app.use("/api/products", productRoutes);
 
 mongoose
   .connect(process.env.MONGO_URI)
